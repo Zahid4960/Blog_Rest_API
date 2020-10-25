@@ -16,15 +16,7 @@ public class PostService {
         return repository.save(post);
     }
 
-    public List<Post> saveMultiplePosts(List<Post> posts){
-        return repository.saveAll(posts);
-    }
-
     public List<Post> getAllPosts(){
         return repository.findAll();
-    }
-
-    public Post findPostById(int id){
-        return repository.findById(id).orElse(null);
     }
 }
