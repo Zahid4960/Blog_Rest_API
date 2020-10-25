@@ -1,6 +1,16 @@
 package com.zahid.BlogRestApi.model;
 
+import lombok.Data;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Data
+@Entity
 public class Post {
+    @Id
+    @GeneratedValue
     private int id;
     private String title;
     private String description;
@@ -21,6 +31,10 @@ public class Post {
         this.user_id = user_id;
         this.created_at = created_at;
         this.updated_at = updated_at;
+    }
+
+    public Post(){
+
     }
 
     public int getId() {
