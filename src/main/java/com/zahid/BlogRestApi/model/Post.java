@@ -35,7 +35,7 @@ public class Post {
 
     @Column(name = "updated_at")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date updated_at;
+    private Date updated_at = new Date();
 
     public Post(Integer id, String title, String description, Integer category_id, Integer user_id, Integer status, Date created_at, Date updated_at){
         this.id = id;
