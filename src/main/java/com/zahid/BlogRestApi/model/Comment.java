@@ -7,15 +7,21 @@ import java.util.Date;
 
 @Data
 @Entity
-@Table(name = "categories")
-public class Category {
+@Table(name = "comments")
+public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(name = "category_name", nullable = false)
-    private String category_name;
+    @Column(name = "comment", nullable = false, length = 500)
+    private String comment;
+
+    @Column(name = "user_id", nullable = false)
+    private Integer user_id;
+
+    @Column(name = "post_id", nullable = false)
+    private Integer post_id;
 
     @Column(name = "status", nullable = false, columnDefinition = "Integer default 1")
     private Integer status;
@@ -24,17 +30,19 @@ public class Category {
     @Temporal(TemporalType.TIMESTAMP)
     private Date created_at = new Date();
 
-    @Column(name = "created_at")
+    @Column(name = "updated_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updated_at = new Date();
 
-    public Category(){
+    public Comment(){
 
     }
 
-    public Category(Integer id, String category_name, Integer status, Date created_at, Date updated_at){
+    public Comment(Integer Id, String comment, Integer user_id, Integer post_id, Integer status, Date created_at, Date updated_at){
         this.id = id;
-        this.category_name = category_name;
+        this.comment = comment;
+        this.user_id = user_id;
+        this.post_id = post_id;
         this.status = status;
         this.created_at = created_at;
         this.updated_at = updated_at;
@@ -44,16 +52,32 @@ public class Category {
         return id;
     }
 
-    public void setId(Integer Id){
+    public void setId(Integer id){
         this.id = id;
     }
 
-    public String getCategoryName(){
-        return category_name;
+    public String getComment(){
+        return comment;
     }
 
-    public void setCategoryName(String category_name){
-        this.category_name = category_name;
+    public void setComment(String comment){
+        this.comment = comment;
+    }
+
+    public Integer getUserId(){
+        return user_id;
+    }
+
+    public void setUserId(){
+        this.user_id = user_id;
+    }
+
+    public Integer getPostId(){
+        return post_id;
+    }
+
+    public void setPostId(Integer post_id){
+        this.post_id = post_id;
     }
 
     public Integer getStatus(){
