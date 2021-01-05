@@ -24,7 +24,7 @@ public class Category {
     @Temporal(TemporalType.TIMESTAMP)
     private Date created_at = new Date();
 
-    @Column(name = "created_at")
+    @Column(name = "updated_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updated_at = new Date();
 
