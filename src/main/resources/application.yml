@@ -1,0 +1,18 @@
+server:
+  port: 7000
+  error:
+    whitelabel:
+      enabled: true
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/Spring_blog_backend
+    username: 'root'
+    password: '!@#Eatl123'
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    generate-ddl: true
