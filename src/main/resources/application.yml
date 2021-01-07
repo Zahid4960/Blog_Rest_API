@@ -1,5 +1,5 @@
 server:
-  port: 7000
+  port: 9000
   error:
     whitelabel:
       enabled: true
@@ -16,3 +16,4 @@ spring:
     hibernate:
       ddl-auto: update
     generate-ddl: true
+    open-in-view: false
