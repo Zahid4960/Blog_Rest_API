@@ -3,23 +3,16 @@ package com.zahid.BlogRestApi.Controller;
 import com.zahid.BlogRestApi.model.Category;
 import com.zahid.BlogRestApi.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
 
 
-
-//@RestController
-@Controller
+@RestController
 public class CategoryController {
-//    @Qualifier("CategoryService")
     @Autowired
-    private CategoryService categoryService;
+    CategoryService categoryService;
 
     @GetMapping("/api/v1/category")
     public List<Category> index(){
@@ -27,7 +20,12 @@ public class CategoryController {
     }
 
     @PostMapping("/api/v1/category")
-    public Category store(Category category){
+    public Category store(@RequestBody Category category){
         return categoryService.saveCategory(category);
+    }
+
+    @GetMapping("/api/v1/category/{id}")
+    public Category show(@PathVariable Integer id){
+        return categoryService.findById(id);
     }
 }
