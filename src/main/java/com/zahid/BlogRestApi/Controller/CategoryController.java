@@ -25,7 +25,12 @@ public class CategoryController {
     }
 
     @GetMapping("/api/v1/category/{id}")
-    public Category show(@PathVariable Integer id){
+    public Object show(@PathVariable Integer id){
         return categoryService.findById(id);
+    }
+
+    @DeleteMapping("/api/v1/category/{id}")
+    public Object destroy(@PathVariable Integer id){
+        return categoryService.deleteById(id);
     }
 }
