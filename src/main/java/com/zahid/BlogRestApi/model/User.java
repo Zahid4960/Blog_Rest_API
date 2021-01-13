@@ -7,50 +7,50 @@ import java.util.Date;
 
 @Data
 @Entity
-@Table(name = "users")
+@Table
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
+    @Column
     private Integer id;
 
-    @Column(name = "email", nullable = false)
+    @Column
     private String email;
 
-    @Column(name = "username", nullable = false)
+    @Column
     private String username;
 
-    @Column(name = "encrypted_password", nullable = false)
-    private String encrypted_password;
+    @Column
+    private String encryptedPassword;
 
-    @Column(name = "plain_password", nullable = false)
-    private String plain_password;
+    @Column
+    private String plainPassword;
 
-    @Column(name = "status", columnDefinition = "integer default 1")
+    @Column(columnDefinition = "integer default 1")
     private Integer status;
 
-    @Column(name = "created_at")
+    @Column
     @Temporal(TemporalType.TIMESTAMP)
-    private Date created_at = new Date();
+    private Date createdAt = new Date();
 
-    @Column(name = "updated_at")
+    @Column
     @Temporal(TemporalType.TIMESTAMP)
-    private Date updated_at = new Date();
+    private Date updatedAt = new Date();
 
 
     public User(){
 
     }
 
-    public User(Integer id, String email, String username, String encrypted_password, String plain_password, Integer status, Date created_at, Date updated_at){
+    public User(Integer id, String email, String username, String encryptedPassword, String plainPassword, Integer status, Date createdAt, Date updatedAt){
         this.id = id;
         this.email = email;
         this.username = username;
-        this.encrypted_password = encrypted_password;
-        this.plain_password = plain_password;
+        this.encryptedPassword = encryptedPassword;
+        this.plainPassword = plainPassword;
         this.status = status;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     public Integer getId(){
@@ -77,20 +77,20 @@ public class User {
         this.username = username;
     }
 
-    public String getEncrypted_password() {
-        return encrypted_password;
+    public String getEncryptedPassword() {
+        return encryptedPassword;
     }
 
-    public void setEncrypted_password(String encrypted_password) {
-        this.encrypted_password = encrypted_password;
+    public void setEncryptedPassword(String encryptedPassword) {
+        this.encryptedPassword = encryptedPassword;
     }
 
-    public String getPlain_password() {
-        return plain_password;
+    public String getPlainPassword() {
+        return plainPassword;
     }
 
-    public void setPlain_password(String plain_password) {
-        this.plain_password = plain_password;
+    public void setPlainPassword(String plainPassword) {
+        this.plainPassword = plainPassword;
     }
 
     public Integer getStatus() {
@@ -101,20 +101,20 @@ public class User {
         this.status = status;
     }
 
-    public Date getCreated_at() {
-        return created_at;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreated_at(Date created_at) {
-        this.created_at = created_at;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public Date getUpdated_at() {
-        return updated_at;
+    public Date getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setUpdated_at(Date updated_at) {
-        this.updated_at = updated_at;
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
 }

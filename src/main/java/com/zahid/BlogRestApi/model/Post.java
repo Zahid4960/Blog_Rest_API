@@ -7,45 +7,45 @@ import java.util.Date;
 
 @Data
 @Entity
-@Table(name="posts")
+@Table
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
+    @Column
     private Integer id;
 
-    @Column(name = "title", nullable = false)
+    @Column
     private String title;
 
-    @Column(name = "description", nullable = false, length = 1000)
+    @Column(length = 1000)
     private String description;
 
-    @Column(name = "category_id", nullable = false)
-    private Integer category_id;
+    @Column
+    private Integer categoryId;
 
-    @Column(name = "user_id", nullable = false)
-    private Integer user_id;
+    @Column
+    private Integer userId;
 
-    @Column(name = "status", columnDefinition = "integer default 1")
+    @Column(columnDefinition = "integer default 1")
     private Integer status;
 
-    @Column(name = "created_at")
+    @Column
     @Temporal(TemporalType.TIMESTAMP)
-    private Date created_at = new Date();
+    private Date createdAt = new Date();
 
-    @Column(name = "updated_at")
+    @Column
     @Temporal(TemporalType.TIMESTAMP)
-    private Date updated_at = new Date();
+    private Date updatedAt = new Date();
 
-    public Post(Integer id, String title, String description, Integer category_id, Integer user_id, Integer status, Date created_at, Date updated_at){
+    public Post(Integer id, String title, String description, Integer categoryId, Integer userId, Integer status, Date createdAt, Date updatedAt){
         this.id = id;
         this.title = title;
         this.description = description;
-        this.category_id = category_id;
-        this.user_id = user_id;
+        this.categoryId = categoryId;
+        this.userId = userId;
         this.status = status;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     public Post(){
@@ -77,19 +77,19 @@ public class Post {
     }
 
     public Integer getCategoryId(){
-        return category_id;
+        return categoryId;
     }
 
-    public void setCategoryId(Integer category_id){
-        this.category_id = category_id;
+    public void setCategoryId(Integer categoryId){
+        this.categoryId = categoryId;
     }
 
     public Integer getUserId(){
-        return user_id;
+        return userId;
     }
 
     public void setUserId(Integer user_id){
-        this.user_id = user_id;
+        this.userId = userId;
     }
 
     public Integer getStatus(){
@@ -101,18 +101,18 @@ public class Post {
     }
 
     public Date getCreatedAt(){
-        return created_at;
+        return createdAt;
     }
 
-    public void setCreatedAt(Date created_at){
-        this.created_at = created_at;
+    public void setCreatedAt(Date createdAt){
+        this.createdAt = createdAt;
     }
 
     public Date getUpdatedAt(){
-        return updated_at;
+        return updatedAt;
     }
 
-    public void setUpdatedAt(Date updated_at){
-        this.updated_at = updated_at;
+    public void setUpdatedAt(Date updatedAt){
+        this.updatedAt = updatedAt;
     }
 }

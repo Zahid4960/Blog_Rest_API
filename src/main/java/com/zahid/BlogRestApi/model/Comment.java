@@ -7,45 +7,45 @@ import java.util.Date;
 
 @Data
 @Entity
-@Table(name = "comments")
+@Table
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
+    @Column
     private Integer id;
 
-    @Column(name = "comment", nullable = false, length = 500)
+    @Column(length = 500)
     private String comment;
 
-    @Column(name = "user_id", nullable = false)
-    private Integer user_id;
+    @Column
+    private Integer userId;
 
-    @Column(name = "post_id", nullable = false)
-    private Integer post_id;
+    @Column
+    private Integer postId;
 
-    @Column(name = "status", nullable = false, columnDefinition = "Integer default 1")
+    @Column(columnDefinition = "Integer default 1")
     private Integer status;
 
-    @Column(name = "created_at")
+    @Column
     @Temporal(TemporalType.TIMESTAMP)
-    private Date created_at = new Date();
+    private Date createdAt = new Date();
 
-    @Column(name = "updated_at")
+    @Column
     @Temporal(TemporalType.TIMESTAMP)
-    private Date updated_at = new Date();
+    private Date updatedAt = new Date();
 
     public Comment(){
 
     }
 
-    public Comment(Integer Id, String comment, Integer user_id, Integer post_id, Integer status, Date created_at, Date updated_at){
+    public Comment(Integer Id, String comment, Integer userId, Integer postId, Integer status, Date createdAt, Date updatedAt){
         this.id = id;
         this.comment = comment;
-        this.user_id = user_id;
-        this.post_id = post_id;
+        this.userId = userId;
+        this.postId = postId;
         this.status = status;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     public Integer getId(){
@@ -65,19 +65,19 @@ public class Comment {
     }
 
     public Integer getUserId(){
-        return user_id;
+        return userId;
     }
 
-    public void setUserId(){
-        this.user_id = user_id;
+    public void setUserId(Integer userId){
+        this.userId = userId;
     }
 
     public Integer getPostId(){
-        return post_id;
+        return postId;
     }
 
-    public void setPostId(Integer post_id){
-        this.post_id = post_id;
+    public void setPostId(Integer postId){
+        this.postId = postId;
     }
 
     public Integer getStatus(){
@@ -89,18 +89,18 @@ public class Comment {
     }
 
     public Date getCreatedAt(){
-        return created_at;
+        return createdAt;
     }
 
-    public void setCreatedAt(Date created_at){
-        this.created_at = created_at;
+    public void setCreatedAt(Date createdAt){
+        this.createdAt = createdAt;
     }
 
     public Date getUpdatedAt(){
-        return updated_at;
+        return updatedAt;
     }
 
     public void setUpdatedAt(Date updated_at){
-        this.updated_at = updated_at;
+        this.updatedAt = updatedAt;
     }
 }

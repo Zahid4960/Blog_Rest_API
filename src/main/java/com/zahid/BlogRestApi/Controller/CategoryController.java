@@ -41,8 +41,25 @@ public class CategoryController {
     }
 
     @PostMapping("/api/v1/category")
-    public Category store(@RequestBody Category category){
-        return categoryService.saveCategory(category);
+    public ResponseEntity<Map<String, Object>> store(@RequestBody Category category){
+
+        Map<String, Object> response = new HashMap<String, Object>();
+
+        try {
+            Category saveCategory = categoryService.saveCategory(category);
+            response.put("status", "success");
+            response.put("message", "Category Saved!!!");
+            response.put("data", saveCategory);
+
+            return new ResponseEntity(response, HttpStatus.OK);
+
+        }catch (Exception ex){
+            ex.printStackTrace();
+            response.put("status", "success");
+            response.put("message", "Category Does Not Save Exception Appear");
+
+            return new ResponseEntity(response, HttpStatus.BAD_REQUEST);
+        }
     }
 
     @GetMapping("/api/v1/category/{id}")
