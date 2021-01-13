@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 
+
 @RestController
 public class CategoryController {
     @Autowired
@@ -22,20 +23,20 @@ public class CategoryController {
     public ResponseEntity<Map<String, Object>> index(){
 
         List<Category> category_list = categoryService.getAllCategories();
-        Map<String, Object> message = new HashMap<String, Object>();
+        Map<String, Object> response = new HashMap<String, Object>();
 
         if(category_list.isEmpty()){
-            message.put("status", "success");
-            message.put("message", "No Data Found!!!");
-            message.put("data", category_list);
+            response.put("status", "success");
+            response.put("message", "No Data Found!!!");
+            response.put("data", category_list);
 
-            return new ResponseEntity(message, HttpStatus.OK);
+            return new ResponseEntity(response, HttpStatus.OK);
         }else{
-            message.put("status", "success");
-            message.put("message", "No Data Found!!!");
-            message.put("data", category_list);
+            response.put("status", "success");
+            response.put("message", "Data Found!!!");
+            response.put("data", category_list);
 
-            return new ResponseEntity(message, HttpStatus.OK);
+            return new ResponseEntity(response, HttpStatus.OK);
         }
     }
 
@@ -43,12 +44,28 @@ public class CategoryController {
     public Category store(@RequestBody Category category){
         return categoryService.saveCategory(category);
     }
-//
-//    @GetMapping("/api/v1/category/{id}")
-//    public Object show(@PathVariable Integer id){
-//        return categoryService.findById(id);
-//    }
-//
+
+    @GetMapping("/api/v1/category/{id}")
+    public ResponseEntity<Map<String, Object>> show(@PathVariable Integer id){
+
+        Object category_by_id = categoryService.findById(id);
+        Map<String, Object> response = new HashMap<>();
+
+        if(category_by_id == null){
+            response.put("status", "success");
+            response.put("message", "No Data Found!!!");
+            response.put("data", category_by_id);
+
+            return new ResponseEntity(response, HttpStatus.OK);
+        }else{
+            response.put("status", "success");
+            response.put("message", "Data Found!!!");
+            response.put("data", category_by_id);
+
+            return new ResponseEntity(response, HttpStatus.OK);
+        }
+    }
+
 //    @DeleteMapping("/api/v1/category/{id}")
 //    public Object destroy(@PathVariable Integer id){
 //        return categoryService.deleteById(id);

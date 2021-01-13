@@ -7,37 +7,37 @@ import java.util.Date;
 
 @Data
 @Entity
-@Table(name = "categories")
+@Table
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
+    @Column
     private Integer id;
 
-    @Column(name = "category_name", nullable = false)
-    private String category_name;
+    @Column
+    private String categoryName;
 
-    @Column(name = "status", nullable = false, columnDefinition = "Integer default 1")
+    @Column(columnDefinition = "Integer default 1")
     private Integer status;
 
-    @Column(name = "created_at")
+    @Column
     @Temporal(TemporalType.TIMESTAMP)
-    private Date created_at = new Date();
+    private Date createdAt = new Date();
 
-    @Column(name = "updated_at")
+    @Column
     @Temporal(TemporalType.TIMESTAMP)
-    private Date updated_at = new Date();
+    private Date updatedAt = new Date();
 
     public Category(){
 
     }
 
-    public Category(Integer id, String category_name, Integer status, Date created_at, Date updated_at){
+    public Category(Integer id, String categoryName, Integer status, Date createdAt, Date updatedAt){
         this.id = id;
-        this.category_name = category_name;
+        this.categoryName = categoryName;
         this.status = status;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     public Integer getId(){
@@ -49,11 +49,11 @@ public class Category {
     }
 
     public String getCategoryName(){
-        return category_name;
+        return categoryName;
     }
 
-    public void setCategoryName(String category_name){
-        this.category_name = category_name;
+    public void setCategoryName(String categoryName){
+        this.categoryName = categoryName;
     }
 
     public Integer getStatus(){
@@ -65,18 +65,18 @@ public class Category {
     }
 
     public Date getCreatedAt(){
-        return created_at;
+        return createdAt;
     }
 
-    public void setCreatedAt(Date created_at){
-        this.created_at = created_at;
+    public void setCreatedAt(Date createdAt){
+        this.createdAt = createdAt;
     }
 
     public Date getUpdatedAt(){
-        return updated_at;
+        return updatedAt;
     }
 
-    public void setUpdatedAt(Date updated_at){
-        this.updated_at = updated_at;
+    public void setUpdatedAt(Date updatedAt){
+        this.updatedAt = updatedAt;
     }
 }
