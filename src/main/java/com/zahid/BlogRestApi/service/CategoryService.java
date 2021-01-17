@@ -4,14 +4,12 @@ import com.zahid.BlogRestApi.model.Category;
 import com.zahid.BlogRestApi.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.annotation.Validated;
 
 import javax.validation.Valid;
 import java.util.List;
 
 
 @Service
-@Validated
 public class CategoryService {
     @Autowired
     private CategoryRepository categoryRepository;

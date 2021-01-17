@@ -4,7 +4,6 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Data
@@ -17,7 +16,7 @@ public class Category {
     private Integer id;
 
     @Column
-    @NotNull(message = "Category Name is required")
+    @NotBlank(message = "Category Name is required")
     private String categoryName;
 
     @Column(columnDefinition = "Integer default 1")
