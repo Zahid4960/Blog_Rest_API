@@ -5,9 +5,12 @@ import com.zahid.BlogRestApi.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +18,7 @@ import java.util.Map;
 
 
 @RestController
+@Validated
 public class CategoryController {
     @Autowired
     CategoryService categoryService;
@@ -41,11 +45,10 @@ public class CategoryController {
     }
 
     @PostMapping("/api/v1/category")
-    public ResponseEntity<Map<String, Object>> store(@RequestBody Category category){
+    public ResponseEntity<Map<String, Object>> store(@Valid @RequestBody Category category) throws Exception{
 
         Map<String, Object> response = new HashMap<String, Object>();
-
-        try {
+//        try {
             Category saveCategory = categoryService.saveCategory(category);
             response.put("status", "success");
             response.put("message", "Category Saved!!!");
@@ -53,13 +56,13 @@ public class CategoryController {
 
             return new ResponseEntity(response, HttpStatus.OK);
 
-        }catch (Exception ex){
-            ex.printStackTrace();
-            response.put("status", "success");
-            response.put("message", "Category Does Not Save Exception Appear");
-
-            return new ResponseEntity(response, HttpStatus.BAD_REQUEST);
-        }
+//        }catch (Exception ex){
+//            ex.printStackTrace();
+//            response.put("status", "error");
+//            response.put("message", "Category Does Not Save Exception Appear");
+//
+//            return new ResponseEntity(response, HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
     }
 
     @GetMapping("/api/v1/category/{id}")

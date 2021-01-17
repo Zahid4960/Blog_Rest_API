@@ -4,11 +4,14 @@ import com.zahid.BlogRestApi.model.Category;
 import com.zahid.BlogRestApi.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
+import javax.validation.Valid;
 import java.util.List;
 
 
 @Service
+@Validated
 public class CategoryService {
     @Autowired
     private CategoryRepository categoryRepository;
@@ -17,7 +20,7 @@ public class CategoryService {
         return categoryRepository.findAll();
     }
 
-    public Category saveCategory(Category category){
+    public Category saveCategory(@Valid Category category){
         return categoryRepository.save(category);
     }
 
