@@ -20,7 +20,7 @@ public class Category {
     private String categoryName;
 
     @Column(columnDefinition = "Integer default 1")
-    private Integer status;
+    private Integer status = 1;
 
     @Column
     @Temporal(TemporalType.TIMESTAMP)

@@ -1,6 +1,7 @@
 package com.zahid.BlogRestApi.Controller;
 
 import com.zahid.BlogRestApi.model.Category;
+import com.zahid.BlogRestApi.service.BaseService;
 import com.zahid.BlogRestApi.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,15 +23,17 @@ import java.util.Map;
 @Validated
 public class CategoryController {
     @Autowired
-    CategoryService categoryService;
+    private CategoryService categoryService;
+    private BaseService base;
     Validator validator;
 
     @GetMapping("/api/v1/category")
-    public ResponseEntity<Map<String, Object>> index(){
+    public Object index(){
 
         List<Category> category_list = categoryService.getAllCategories();
+//
         Map<String, Object> response = new HashMap<String, Object>();
-
+//
         if(category_list.isEmpty()){
             response.put("status", "success");
             response.put("message", "No Data Found!!!");
@@ -44,6 +47,9 @@ public class CategoryController {
 
             return new ResponseEntity(response, HttpStatus.OK);
         }
+//        return (List<Category>) base.responder(category_list);
+//        return category_list;
+//         return base.responder();
     }
 
     @PostMapping("/api/v1/category")
