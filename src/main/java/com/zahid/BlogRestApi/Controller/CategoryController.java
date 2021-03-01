@@ -28,28 +28,30 @@ public class CategoryController {
     Validator validator;
 
     @GetMapping("/api/v1/category")
-    public Object index(){
+    public void index(){
 
         List<Category> category_list = categoryService.getAllCategories();
 //
-        Map<String, Object> response = new HashMap<String, Object>();
+//        Map<String, Object> response = new HashMap<String, Object>();
 //
-        if(category_list.isEmpty()){
-            response.put("status", "success");
-            response.put("message", "No Data Found!!!");
-            response.put("data", category_list);
-
-            return new ResponseEntity(response, HttpStatus.OK);
-        }else{
-            response.put("status", "success");
-            response.put("message", "Data Found!!!");
-            response.put("data", category_list);
-
-            return new ResponseEntity(response, HttpStatus.OK);
-        }
-//        return (List<Category>) base.responder(category_list);
+//        if(category_list.isEmpty()){
+//            response.put("status", "success");
+//            response.put("message", "No Data Found!!!");
+//            response.put("data", category_list);
+//
+//            return new ResponseEntity(response, HttpStatus.OK);
+//        }else{
+//            response.put("status", "success");
+//            response.put("message", "Data Found!!!");
+//            response.put("data", category_list);
+//
+//            return new ResponseEntity(response, HttpStatus.OK);
+//        }
+//        category_list instanceof
+//        return base.responder(category_list);
 //        return category_list;
 //         return base.responder();
+        System.out.println(category_list);
     }
 
     @PostMapping("/api/v1/category")
