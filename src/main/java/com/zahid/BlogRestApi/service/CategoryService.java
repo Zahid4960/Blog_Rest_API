@@ -14,27 +14,27 @@ public class CategoryService {
     @Autowired
     private CategoryRepository categoryRepository;
 
-    public List<Category> getAllCategories(){
+
+    public List<Category> index(){
         return categoryRepository.findAll();
     }
 
-    public Category saveCategory(@Valid Category category){
+
+    public Object store(@Valid Category category){
         return categoryRepository.save(category);
     }
 
-    public Object findById(Integer id){
+
+    public Object show(Integer id){
         return categoryRepository.findById(id);
     }
-//
-//    public Object deleteById(Integer id){
-//
-//        Optional<Category> check_category_exists_or_not = categoryRepository.findById(id);
-//
-//        if(check_category_exists_or_not.isEmpty()){
-//            return "Category does not found!!";
-//        }else {
-//            categoryRepository.deleteById(id);
-//            return "Category deleted successfully!!!";
-//        }
-//    }
+
+
+    public Object update(Category category){
+        return categoryRepository.save(category);
+    }
+
+    public void destroy(Integer id){
+        categoryRepository.deleteById(id);
+    }
 }

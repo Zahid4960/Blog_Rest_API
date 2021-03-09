@@ -1,7 +1,6 @@
 package com.zahid.BlogRestApi.Controller;
 
 import com.zahid.BlogRestApi.model.Category;
-import com.zahid.BlogRestApi.service.BaseService;
 import com.zahid.BlogRestApi.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,82 +23,101 @@ import java.util.Map;
 public class CategoryController {
     @Autowired
     private CategoryService categoryService;
-    private BaseService base;
     Validator validator;
 
+
     @GetMapping("/api/v1/category")
-    public void index(){
-
-        List<Category> category_list = categoryService.getAllCategories();
-//
-//        Map<String, Object> response = new HashMap<String, Object>();
-//
-//        if(category_list.isEmpty()){
-//            response.put("status", "success");
-//            response.put("message", "No Data Found!!!");
-//            response.put("data", category_list);
-//
-//            return new ResponseEntity(response, HttpStatus.OK);
-//        }else{
-//            response.put("status", "success");
-//            response.put("message", "Data Found!!!");
-//            response.put("data", category_list);
-//
-//            return new ResponseEntity(response, HttpStatus.OK);
-//        }
-//        category_list instanceof
-//        return base.responder(category_list);
-//        return category_list;
-//         return base.responder();
-        System.out.println(category_list);
-    }
-
-    @PostMapping("/api/v1/category")
-    public ResponseEntity<Map<String, Object>> store(@Valid @RequestBody(required = true) Category category) throws Exception{
-
+    public ResponseEntity<Map<String, Object>> index(){
         Map<String, Object> response = new HashMap<String, Object>();
         try {
-            Category saveCategory = categoryService.saveCategory(category);
-            response.put("status", "success");
-            response.put("message", "Category Saved!!!");
-            response.put("data", saveCategory);
-
-            return new ResponseEntity(response, HttpStatus.OK);
-
+            List<Category> lists = categoryService.index();
+            if(lists.isEmpty()){
+                response.put("status", "success");
+                response.put("message", "Category data not found!!!");
+                response.put("data", null);
+                return new ResponseEntity(response, HttpStatus.OK);
+            }else{
+                response.put("status", "success");
+                response.put("message", "Category data found!!!");
+                response.put("data", lists);
+                return new ResponseEntity(response, HttpStatus.OK);
+            }
         }catch (Exception ex){
             ex.printStackTrace();
             response.put("status", "error");
-            response.put("message", "Category Does Not Save Exception Appear");
-
+            response.put("message", "Exception appear!!!");
             return new ResponseEntity(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
+
+    @PostMapping("/api/v1/category")
+    public ResponseEntity<Map<String, Object>> store(@Valid @RequestBody(required = true) Category category) throws Exception{
+        Map<String, Object> response = new HashMap<String, Object>();
+        try {
+            Object data = categoryService.store(category);
+            response.put("status", "success");
+            response.put("message", "Category saved successfully!!!");
+            response.put("data", data);
+            return new ResponseEntity(response, HttpStatus.OK);
+        }catch (Exception ex){
+            ex.printStackTrace();
+            response.put("status", "error");
+            response.put("message", "Category failed to save exception appear!!!");
+            return new ResponseEntity(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
     @GetMapping("/api/v1/category/{id}")
     public ResponseEntity<Map<String, Object>> show(@PathVariable Integer id){
-
-        Object category_by_id = categoryService.findById(id);
         Map<String, Object> response = new HashMap<>();
-
-        if(category_by_id == null){
+        try{
+            Object data = categoryService.show(id);
             response.put("status", "success");
-            response.put("message", "No Data Found!!!");
-            response.put("data", category_by_id);
-
+            response.put("message", "Category found!!!");
+            response.put("data", data);
             return new ResponseEntity(response, HttpStatus.OK);
-        }else{
-            response.put("status", "success");
-            response.put("message", "Data Found!!!");
-            response.put("data", category_by_id);
-
+        }catch(Exception ex){
+            response.put("status", "error");
+            response.put("message", "Category not found exception appear!!!");
             return new ResponseEntity(response, HttpStatus.OK);
         }
     }
 
-//    @DeleteMapping("/api/v1/category/{id}")
-//    public Object destroy(@PathVariable Integer id){
-//        return categoryService.deleteById(id);
-//    }
+
+    @PutMapping("/api/v1/category/{id}")
+    public ResponseEntity<Map<String, Object>> update(Category category){
+        Map<String, Object> response = new HashMap<String, Object>();
+        try{
+           Object data =  categoryService.update(category);
+           response.put("status", "success");
+           response.put("message", "Category updated successfully!!!");
+           response.put("data", data);
+           return new ResponseEntity(response, HttpStatus.OK);
+        }catch (Exception ex){
+            response.put("status", "error");
+            response.put("message", "Category failed update exception appear!!!");
+            return new ResponseEntity(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
+    @DeleteMapping("/api/v1/category/{id}")
+    public ResponseEntity<Map<String, Object>> destroy(@PathVariable Integer id){
+        Map<String, Object> response = new HashMap<String, Object>();
+        try {
+            categoryService.destroy(id);
+            response.put("status", "success");
+            response.put("message", "Category deleted successfully!!!");
+            return new ResponseEntity(response, HttpStatus.OK);
+        }catch (Exception ex){
+            response.put("status", "error");
+            response.put("message", "Category failed to delete exception appears");
+            return new ResponseEntity(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
