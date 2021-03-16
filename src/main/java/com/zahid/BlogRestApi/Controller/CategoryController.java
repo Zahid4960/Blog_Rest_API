@@ -79,6 +79,7 @@ public class CategoryController {
             response.put("data", data);
             return new ResponseEntity(response, HttpStatus.OK);
         }catch(Exception ex){
+            ex.printStackTrace();
             response.put("status", "error");
             response.put("message", "Category not found exception appear!!!");
             return new ResponseEntity(response, HttpStatus.OK);
@@ -96,6 +97,7 @@ public class CategoryController {
            response.put("data", data);
            return new ResponseEntity(response, HttpStatus.OK);
         }catch (Exception ex){
+            ex.printStackTrace();
             response.put("status", "error");
             response.put("message", "Category failed update exception appear!!!");
             return new ResponseEntity(response, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -112,6 +114,7 @@ public class CategoryController {
             response.put("message", "Category deleted successfully!!!");
             return new ResponseEntity(response, HttpStatus.OK);
         }catch (Exception ex){
+            ex.printStackTrace();
             response.put("status", "error");
             response.put("message", "Category failed to delete exception appears");
             return new ResponseEntity(response, HttpStatus.INTERNAL_SERVER_ERROR);
