@@ -11,54 +11,47 @@ import java.util.Date;
 public class UserInformation {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column
     private Integer id;
 
-    @Column
-    private Integer userId;
-
-    @Column
+    @Column(nullable = false)
     private String firstName;
 
-    @Column
     private String lastName;
 
-    @Column
+    @Column(nullable = false)
     private Integer age;
 
-    @Column
+    @Column(nullable = false)
     private String dateOfBirth;
 
-    @Column
+    @Column(nullable = false)
     private Integer gender;
 
-    @Column
+    @Column(nullable = false)
     private String address;
 
-    @Column
     private String nid;
 
-    @Column
+    @Column(nullable = false)
     private String mobile;
 
     @Column(columnDefinition = "Integer default 1")
     private Integer status;
 
-    @Column
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt = new Date();
 
-    @Column
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt = new Date();
 
-    public UserInformation(){
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    }
+    public UserInformation(){}
 
-    public UserInformation(Integer id, Integer userId, String firstName, String lastName, Integer age, String dateOfBirth, Integer gender, String address, String nid, String mobile, Integer status, Date createdAt, Date updatedAt){
+    public UserInformation(Integer id, String firstName, String lastName, Integer age, String dateOfBirth, Integer gender, String address, String nid, String mobile, Integer status, Date createdAt, Date updatedAt){
         this.id = id;
-        this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
@@ -78,14 +71,6 @@ public class UserInformation {
 
     public void setId(Integer id){
         this.id = id;
-    }
-
-    public Integer getUserId(){
-        return userId;
-    }
-
-    public void setUserId(Integer userId){
-        this.userId = userId;
     }
 
     public String getFirstName(){

@@ -11,36 +11,34 @@ import java.util.Date;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column
     private Integer id;
 
-    @Column
+    @Column(nullable = false, unique = true)
     private String email;
 
-    @Column
+    @Column(nullable = false, unique = true)
     private String username;
 
-    @Column
+    @Column(nullable = false)
     private String encryptedPassword;
 
-    @Column
+    @Column(nullable = false)
     private String plainPassword;
 
     @Column(columnDefinition = "integer default 1")
     private Integer status;
 
-    @Column
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt = new Date();
 
-    @Column
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt = new Date();
 
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    private UserInformation userInformation;
 
-    public User(){
-
-    }
+    public User(){}
 
     public User(Integer id, String email, String username, String encryptedPassword, String plainPassword, Integer status, Date createdAt, Date updatedAt){
         this.id = id;
@@ -116,5 +114,4 @@ public class User {
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
-
 }
