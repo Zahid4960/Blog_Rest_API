@@ -35,13 +35,13 @@ public class User implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt = new Date();
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "user")
     @PrimaryKeyJoinColumn
     private UserInformation userInformation;
 
     public User(){}
 
-    public User(Integer id, String email, String username, String encryptedPassword, String plainPassword, Integer status, Date createdAt, Date updatedAt){
+    public User(Integer id, String email, String username, String encryptedPassword, String plainPassword, Integer status, Date createdAt, Date updatedAt, UserInformation userInformation){
         this.id = id;
         this.email = email;
         this.username = username;
@@ -50,6 +50,7 @@ public class User implements Serializable {
         this.status = status;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.userInformation = userInformation;
     }
 
     public Integer getId(){
@@ -114,5 +115,13 @@ public class User implements Serializable {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public UserInformation getUserInformation() {
+        return userInformation;
+    }
+
+    public void setUserInformation(UserInformation userInformation) {
+        this.userInformation = userInformation;
     }
 }

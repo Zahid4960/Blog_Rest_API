@@ -46,12 +46,12 @@ public class UserInformation implements Serializable {
     private Date updatedAt = new Date();
 
     @OneToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false, unique = true)
     private User user;
 
     public UserInformation(){}
 
-    public UserInformation(Integer id, String firstName, String lastName, Integer age, String dateOfBirth, Integer gender, String address, String nid, String mobile, Integer status, Date createdAt, Date updatedAt){
+    public UserInformation(Integer id, String firstName, String lastName, Integer age, String dateOfBirth, Integer gender, String address, String nid, String mobile, Integer status, Date createdAt, Date updatedAt, User user){
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -64,6 +64,7 @@ public class UserInformation implements Serializable {
         this.status = status;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.user = user;
     }
 
     public Integer getId(){
@@ -160,5 +161,13 @@ public class UserInformation implements Serializable {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
